@@ -18,16 +18,23 @@ def alter_list(arr):
  '''   
 
 def converter(base_initial,num,base_converted):
-
+    alpha_dict= {
+        "A": 10, "B":11, "C":12, "D":13, "E":14, "F":15 
+    }
     if base_initial != 10:
        #variable to10 is used to convert numbers that weren't initially in base 10 to base 10 for easier conversion
        to10 = 0
        counter = len(num)-1
        index = 0
        while counter > -1:
-           to10 += int(num[counter]) * base_initial ** index
-           counter -=1
-           index +=1
+        if num[counter] in alpha_dict:
+            to10 += int(alpha_dict.get(num[counter])) * base_initial ** index
+            counter -=1
+            index +=1
+        else: 
+            to10 += int(num[counter]) * base_initial ** index
+            counter -=1
+            index +=1
 
        if base_converted ==10:
            return to10
@@ -72,6 +79,8 @@ def valid_number(num, base_initial):
                     return False
 
         check+=1
+
+
 
     return True
                 
